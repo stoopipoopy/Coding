@@ -1,10 +1,12 @@
 import java.util.Arrays;
+import java.util.Scanner;
+import java.io.*;
 public class redAndBlueTwo {
-    public static String solve(String input, int n){
+    public static String solve(Scanner scan){
         /*
          * 7
          * ?R???BR
-         *    
+         *   BRB
          * BRBRBBR
          * 
          * BRRBRBR
@@ -22,8 +24,16 @@ public class redAndBlueTwo {
          *   
          * 
          */
-
-         char[] inputArr = input.toCharArray();
+        int n = scan.nextInt();
+        String input = scan.next();
+        char[] inputArr = input.toCharArray();
+        if(n == 1){
+            if(inputArr[0] == '?'){
+                return "B";
+            } else{
+                return input;
+            }
+        }
         for(int i = 1; i < n; i++){
             
             if(inputArr[i] == '?'){
@@ -32,36 +42,16 @@ public class redAndBlueTwo {
                 } else if(inputArr[i - 1] == 'B'){
                     inputArr[i] = 'R';
                 }
-            } else if(inputArr[i] == 'R'){
-                if(inputArr[i - 1] == '?'){
-                    inputArr[i - 1] = 'B';
-                }
-            } else if(inputArr[i] == 'B'){
-                if(inputArr[i - 1] == '?'){
-                    inputArr[i - 1] = 'R';
-                }
             }
         }
-        System.out.println(n);
-        System.out.println(inputArr.length);
-        for(int i = n - 1; i > 0; i--){
-            System.out.println("in loop");
+        for(int i = n - 2; i >= 0; i--){
             if(inputArr[i] == '?'){
                 if(inputArr[i + 1] == 'R'){
                     inputArr[i] = 'B';
                 } else if(inputArr[i + 1] == 'B'){
                     inputArr[i] = 'R';
                 }
-            } else if(inputArr[i] == 'R'){
-                System.out.println("hit this thing but R");
-                if(inputArr[i - 1] == '?'){
-                    inputArr[i -1] = 'B';
-                }
-            } else if(inputArr[i] == 'B'){
-                System.out.println("hit this thing");
-                if(inputArr[i - 1] == '?'){
-                    inputArr[i - 1] = 'R';
-                }
+                
             }
         }
         /*
@@ -77,7 +67,10 @@ public class redAndBlueTwo {
     }
 
     public static void main(String[] args) {
-        System.out.println(solve("??R", 3));
-        System.out.println(solve("???RB",5));
+        Scanner scanner = new Scanner(System.in);
+        int cases = scanner.nextInt();
+        for(int i = 0; i < cases; i++){
+            System.out.println(solve(scanner));
+        }
     }
 }
