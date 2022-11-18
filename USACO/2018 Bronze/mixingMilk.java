@@ -8,7 +8,8 @@ public class mixingMilk {
         return;
     }
     public static void main(String[] args) throws FileNotFoundException {
-        Scanner input = new Scanner(new BufferedReader(new FileReader("milk.in")));
+        Scanner input = new Scanner(new BufferedReader(new FileReader("mixmilk.in")));
+        PrintWriter pw = new PrintWriter("mixmilk.out");
         // [curent amount of milk, max milk]
         int[] bucket1 = new int[2];
         bucket1[1] = input.nextInt();
@@ -43,6 +44,7 @@ public class mixingMilk {
             }
         }
         
-        System.out.println(bucket1[0] +"\n"+ bucket2[0] +"\n"+ bucket3[0]);
+        pw.println(bucket1[0] +"\n"+ bucket2[0] +"\n"+ bucket3[0]);
+        pw.close();
     }
 }
