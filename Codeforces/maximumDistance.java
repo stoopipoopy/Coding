@@ -12,10 +12,14 @@ public class maximumDistance {
         int y1;
         int x2;
         int y2;
-        for(int i = 0; i < cases - 1; i++){
-            double curDistance = Math.sqrt(  
-                Math.pow(xVals[i + 1] - xVals[i], 2.0) + 
-                Math.pow(yVals[i + 1] - yVals[i] ,2.0)
+        for(int i = 0; i < cases; i++){
+            double curDistance = Math.sqrt( 
+                Math.pow(xVals[
+                    ( i == cases - 1 ? 0 : i + 1)
+                    ] - xVals[i], 2.0) + 
+                Math.pow(yVals[
+                    ( i == cases - 1 ? 0 : i + 1)
+                    ] - yVals[i] ,2.0)
             );
             if(curDistance > highestDistance){
                 highestDistance = curDistance;
