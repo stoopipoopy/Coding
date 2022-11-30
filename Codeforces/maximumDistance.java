@@ -4,16 +4,27 @@ import java.lang.*;
 public class maximumDistance {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
-        int cases = Integer.valueOf(scanner.nextLine());
+        int n = Integer.valueOf(scanner.nextLine());
         int[] xVals = Arrays.stream(scanner.nextLine().split(" ")).mapToInt(Integer::parseInt).toArray();
         int[] yVals = Arrays.stream(scanner.nextLine().split(" ")).mapToInt(Integer::parseInt).toArray();
-        double highestDistance = Double.MIN_VALUE;
-        int x1;
-        int y1;
-        int x2;
-        int y2;
-        for(int i = 0; i < cases; i++){
-            double curDistance = Math.sqrt( 
+        int highestDistance = Integer.MIN_VALUE;
+        // i takes on every value from 0 to n-1
+        // j takes on every value from 0 to n-1
+        // at some point i = 1, j = 3
+        //               i = 3, j = 1
+        // have some condition that we enforce
+        // j >= i. 
+        for(int i = 0; i < n; i++){
+            for(int j = i + 1; j < n; j++){
+                int xDiff = xVals[i] - xVals[j];
+                int yDiff = yVals[i] - yVals[j];
+                int distance = yDiff * yDiff + xDiff * xDiff;
+                if(distance > highestDistance){
+                    highestDistance = distance;
+                } 
+            }
+            /*/
+            int curDistance = (
                 Math.pow(xVals[
                     ( i == cases - 1 ? 0 : i + 1)
                     ] - xVals[i], 2.0) + 
@@ -21,9 +32,8 @@ public class maximumDistance {
                     ( i == cases - 1 ? 0 : i + 1)
                     ] - yVals[i] ,2.0)
             );
-            if(curDistance > highestDistance){
-                highestDistance = curDistance;
-            }
+            
+            */
         }
         System.out.println(highestDistance);
     }
