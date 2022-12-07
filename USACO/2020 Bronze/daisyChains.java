@@ -29,9 +29,9 @@ public class daisyChains{
                 // another loop for check the average'
                 System.out.println();
                 int length = 0;
-                System.out.println(j + " = " + length);
+                System.out.println(j + " = " + length + " - " + i);
                 for(; length <= j; length++){
-                    if(i == 0){
+                    if(j == 0){
                         total++;
                         System.out.println("skipped");
                         break;
